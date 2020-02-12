@@ -80,6 +80,7 @@ Components come unstyled, so take a look at [demo.jsx](https://github.com/kaivi/
 * **shouldBlockWhileLoading**: disables editing until a new value is confirmed by parent
 * **shouldRemainWhileInvalid**: remain in editing mode if validation fails
 * **defaultProps**: Additional props for idle component.
+* **renderValue**: A function, which takes in the value that would be rendered, and returns a new value to render instead, when not editing the component.
 
 #### Customization
 * **classLoading**: CSS class name to use when loading
