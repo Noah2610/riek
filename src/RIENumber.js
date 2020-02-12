@@ -46,7 +46,7 @@ export default class RIENumber extends RIEStatefulBase {
         } else {
             value = this.state.newValue || this.props.value;
         }
-        value = renderValue(value);
+        value = this.renderValue(value);
         return <span
             tabIndex="0"
             className={this.makeClassString()}
