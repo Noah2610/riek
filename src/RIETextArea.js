@@ -22,21 +22,22 @@ export default class RIETextArea extends RIEStatefulBase {
     };
 
     renderNormalComponent = () => {
-        const value = this.state.newValue || this.props.value
-        const spans_and_brs = []
-        let i = 0
+        const value = this.state.newValue || this.props.value;
+        const spans_and_brs = [];
+        let i = 0;
         value.split("\n").map(line => {
           spans_and_brs.push(<span key={i}>{line}</span>)
           spans_and_brs.push(<br key={i+1} />)
           i += 2
-        })
-        spans_and_brs.pop() // remove last br tag
+        });
+        spans_and_brs.pop(); // remove last br tag
+        const finalValue = this.renderValue(spans_and_brs);
 
         return <span
             tabIndex="0"
             className={this.makeClassString()}
             onFocus={this.startEditing}
             onClick={this.startEditing}
-            {...this.props.defaultProps}>{spans_and_brs}</span>;
+            {...this.props.defaultProps}>{finalValue}</span>;
     };
 }

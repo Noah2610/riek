@@ -99,11 +99,12 @@ export default class RIETags extends RIEStatefulBase {
 
     renderNormalComponent = () => {
         let tags = [...this.props.value].join(this.props.separator || ", ");
+        const value = this.renderValue(tags);
         return <span
             tabIndex="0"
             className={this.makeClassString()}
             onFocus={this.startEditing}
-            {...this.props.defaultProps}>{tags}</span>;
+            {...this.props.defaultProps}>{value}</span>;
     };
 
     makeTagElement = (text) => {

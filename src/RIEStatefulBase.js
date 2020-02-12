@@ -78,17 +78,17 @@ export default class RIEStatefulBase extends RIEBase {
 
     renderNormalComponent = () => {
         debug('renderNormalComponent')
+        const value = this.renderValue(this.state.newValue || this.props.value);
         return <span
             tabIndex="0"
             className={this.makeClassString()}
             onFocus={this.startEditing}
             onClick={this.startEditing}
-            {...this.props.defaultProps}>{this.renderValue()}</span>;
+            {...this.props.defaultProps}>{value}</span>;
     };
 
-    renderValue = () => {
+    renderValue = (value) => {
         debug('renderValue')
-        const value = this.state.newValue || this.props.value;
         if(typeof this.props.renderValue === "function") {
             return this.props.renderValue(value);
         } else {

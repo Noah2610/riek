@@ -40,12 +40,19 @@ export default class RIENumber extends RIEStatefulBase {
 
     renderNormalComponent = () => {
         debug(`renderNormalComponent()`)
+        let value = null;
+        if(this.props.format) {
+            value = this.props.format(this.state.newValue || this.props.value);
+        } else {
+            value = this.state.newValue || this.props.value;
+        }
+        value = renderValue(value);
         return <span
             tabIndex="0"
             className={this.makeClassString()}
             onFocus={this.startEditing}
             onClick={this.elementClick}
-            {...this.props.defaultProps}>{this.props.format ? this.props.format(this.state.newValue || this.props.value) : (this.state.newValue || this.props.value)}</span>;
+            {...this.props.defaultProps}>{value}</span>;
     };
 
     renderEditingComponent = () => {

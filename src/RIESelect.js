@@ -36,11 +36,18 @@ export default class RIESelect extends RIEStatefulBase {
     };
 
     renderNormalComponent = () => {
+        let value = null;
+        if(!!this.state.newValue) {
+            value = this.state.newValue.text;
+        } else {
+            value = this.props.value.text;
+        }
+        value = this.renderValue(value);
         return <span
             tabIndex="0"
             className={this.makeClassString()}
             onFocus={this.startEditing}
             onClick={this.startEditing}
-            {...this.props.defaultProps}>{(!!this.state.newValue) ? this.state.newValue.text : this.props.value.text}</span>;
+            {...this.props.defaultProps}>{value}</span>;
     };
 }
