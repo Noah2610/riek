@@ -20234,20 +20234,16 @@
 	                onKeyDown: _this.keyDown
 	            }, _this.props.editProps));
 	        }, _this.renderNormalComponent = function () {
-	            var value = _this.state.newValue || _this.props.value;
-	            var spans_and_brs = [];
-	            var i = 0;
-	            value.split("\n").map(function (line) {
-	                spans_and_brs.push(_react2.default.createElement(
-	                    'span',
-	                    { key: i },
-	                    line
-	                ));
-	                spans_and_brs.push(_react2.default.createElement('br', { key: i + 1 }));
-	                i += 2;
-	            });
-	            spans_and_brs.pop(); // remove last br tag
-	            var finalValue = _this.renderValue(spans_and_brs);
+	            var value = _this.renderValue(_this.state.newValue || _this.props.value);
+	            // const spans_and_brs = [];
+	            // let i = 0;
+	            // value.split("\n").map(line => {
+	            //   spans_and_brs.push(<span key={i}>{line}</span>)
+	            //   spans_and_brs.push(<br key={i+1} />)
+	            //   i += 2
+	            // });
+	            // spans_and_brs.pop(); // remove last br tag
+	            // const finalValue = this.renderValue(spans_and_brs);
 
 	            return _react2.default.createElement(
 	                'span',
@@ -20257,7 +20253,7 @@
 	                    onFocus: _this.startEditing,
 	                    onClick: _this.startEditing
 	                }, _this.props.defaultProps),
-	                finalValue
+	                value
 	            );
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
