@@ -20129,8 +20129,18 @@
 	                    onFocus: _this.startEditing,
 	                    onClick: _this.startEditing
 	                }, _this.props.defaultProps),
-	                _this.state.newValue || _this.props.value
+	                _this.renderValue()
 	            );
+	        };
+
+	        _this.renderValue = function () {
+	            debug('renderValue');
+	            var value = _this.state.newValue || _this.props.value;
+	            if (typeof _this.props.renderValue === "function") {
+	                return _this.props.renderValue(value);
+	            } else {
+	                return value;
+	            }
 	        };
 
 	        _this.elementBlur = function (event) {
