@@ -20121,6 +20121,7 @@
 
 	        _this.renderNormalComponent = function () {
 	            debug('renderNormalComponent');
+	            var value = _this.renderValue(_this.state.newValue || _this.props.value);
 	            return _react2.default.createElement(
 	                'span',
 	                _extends({
@@ -20129,13 +20130,12 @@
 	                    onFocus: _this.startEditing,
 	                    onClick: _this.startEditing
 	                }, _this.props.defaultProps),
-	                _this.renderValue()
+	                value
 	            );
 	        };
 
-	        _this.renderValue = function () {
+	        _this.renderValue = function (value) {
 	            debug('renderValue');
-	            var value = _this.state.newValue || _this.props.value;
 	            if (typeof _this.props.renderValue === "function") {
 	                return _this.props.renderValue(value);
 	            } else {
@@ -20246,9 +20246,10 @@
 	                spans_and_brs.push(_react2.default.createElement('br', { key: i + 1 }));
 	                i += 2;
 	            });
-	            spans_and_brs.pop // remove last br tag
+	            spans_and_brs.pop(); // remove last br tag
+	            var finalValue = _this.renderValue(spans_and_brs);
 
-	            ();return _react2.default.createElement(
+	            return _react2.default.createElement(
 	                'span',
 	                _extends({
 	                    tabIndex: '0',
@@ -20256,7 +20257,7 @@
 	                    onFocus: _this.startEditing,
 	                    onClick: _this.startEditing
 	                }, _this.props.defaultProps),
-	                spans_and_brs
+	                finalValue
 	            );
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
@@ -20335,6 +20336,13 @@
 
 	        _this.renderNormalComponent = function () {
 	            debug('renderNormalComponent()');
+	            var value = null;
+	            if (_this.props.format) {
+	                value = _this.props.format(_this.state.newValue || _this.props.value);
+	            } else {
+	                value = _this.state.newValue || _this.props.value;
+	            }
+	            value = _this.renderValue(value);
 	            return _react2.default.createElement(
 	                'span',
 	                _extends({
@@ -20343,7 +20351,7 @@
 	                    onFocus: _this.startEditing,
 	                    onClick: _this.elementClick
 	                }, _this.props.defaultProps),
-	                _this.props.format ? _this.props.format(_this.state.newValue || _this.props.value) : _this.state.newValue || _this.props.value
+	                value
 	            );
 	        };
 
@@ -20514,6 +20522,7 @@
 
 	        _this2.renderNormalComponent = function () {
 	            var tags = [].concat(_toConsumableArray(_this2.props.value)).join(_this2.props.separator || ", ");
+	            var value = _this2.renderValue(tags);
 	            return _react2.default.createElement(
 	                'span',
 	                _extends({
@@ -20521,7 +20530,7 @@
 	                    className: _this2.makeClassString(),
 	                    onFocus: _this2.startEditing
 	                }, _this2.props.defaultProps),
-	                tags
+	                value
 	            );
 	        };
 
@@ -20644,6 +20653,13 @@
 	                optionNodes
 	            );
 	        }, _this.renderNormalComponent = function () {
+	            var value = null;
+	            if (!!_this.state.newValue) {
+	                value = _this.state.newValue.text;
+	            } else {
+	                value = _this.props.value.text;
+	            }
+	            value = _this.renderValue(value);
 	            return _react2.default.createElement(
 	                'span',
 	                _extends({
@@ -20652,7 +20668,7 @@
 	                    onFocus: _this.startEditing,
 	                    onClick: _this.startEditing
 	                }, _this.props.defaultProps),
-	                !!_this.state.newValue ? _this.state.newValue.text : _this.props.value.text
+	                value
 	            );
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
